@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    {% for video in videos %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ video.video_title }}</h5>
+                <p class="card-text">
+                    By {{ video.user.username }} | 
+                    {{ video.created_at|date:"M d, Y" }}
+                </p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        {{ video.views_count }} views |
+                        {{ video.like_count }} likes |
+                        {{ video.dislike_count }} dislikes
+                    </small>
+                </p>
+                <a href="{% url 'video_detail' video.id %}" class="btn btn-primary">View Content</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
